@@ -75,11 +75,12 @@ Interactive API docs: http://localhost:8000/docs
 
 ## Notes
 
-- **Chunking** is a simple, dependency-free paragraph-aware splitter with
-  configurable size/overlap — adequate for the structured markdown
-  playbooks used here; for larger/heterogeneous corpora a
-  recursive/semantic chunker (e.g. via `langchain-text-splitters`) would be
-  a natural upgrade.
+- **Chunking** utilizes a hybrid semantic pipeline via langchain-text-splitters tailored 
+  for markdown playbooks. It first fragments files structurally on # and ## header
+  boundaries (MarkdownHeaderTextSplitter), then refines those sections with a 
+  character-aware budget (RecursiveCharacterTextSplitter). 
+  This enforces strict size limits and carries path/header context down into every 
+  sub-chunk while cleanly preventing the formation of tiny, isolated header fragments.
 
 - **LLM output is TP by default**: the pipeline parses the
   model's JSON and falls back to safe defaults (`TP` /
