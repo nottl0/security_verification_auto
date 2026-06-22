@@ -52,7 +52,7 @@ uv venv .venv
 source .venv/bin/activate
 uv pip install -r requirements.txt
 
-export GEMINI_API=...
+export GEMINI_API_KEY=...
 ```
 
 ## Running
