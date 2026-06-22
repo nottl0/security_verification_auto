@@ -1,0 +1,36 @@
+{
+  "id": 4471,
+  "description": "Multiple Login Failures from Internal Host",
+  "magnitude": 4,
+  "severity": 6,
+  "credibility": 8,
+  "relevance": 5,
+  "offenseSource": "10.10.5.22",
+  "attacker": "10.10.5.22",
+  "attackerDescription": "10.10.5.22 (backup-agent-01.internal)",
+  "target": "10.10.8.15",
+  "targetDescription": "10.10.8.15 (fileserver-02.internal)",
+  "targetNetwork": "internal_fileservers",
+  "domainName": "internal",
+  "eventCount": 847,
+  "categoryCount": 1,
+  "eventDescription": "Repeated SSH authentication failures from internal backup agent against service account over 12h window",
+  "startTime": "2024-11-14T03:17:42Z",
+  "endTime": "2024-11-14T15:21:10Z",
+  "formattedDuration": "12h 3m",
+  "top_events": [
+    {
+      "qid": 5000957,
+      "low_level_category": "Authentication Failure",
+      "high_level_category": "Authentication",
+      "sourceip": "10.10.5.22",
+      "sourceport": 51342,
+      "destinationip": "10.10.8.15",
+      "destinationport": 22,
+      "username": "svc_backup",
+      "event_outcome": "failure",
+      "PROTOCOLNAME": "SSH",
+      "count": 847
+    }
+  ]
+}

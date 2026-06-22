@@ -45,7 +45,7 @@ test_script.py     Script to check user prompt (not system prompt) and chunks re
 
 ## Setup
 
-Generate a free-tier api key to prompt gemini api and add it as environmental variable
+Generate a free-tier api key to prompt gemini api (https://aistudio.google.com/api-keys) and add it as environmental variable
 
 ```bash
 uv venv .venv
@@ -82,13 +82,25 @@ Interactive API docs: http://localhost:8000/docs
   This enforces strict size limits and carries path/header context down into every 
   sub-chunk while cleanly preventing the formation of tiny, isolated header fragments.
 
+- **Embedding** uses paraphrase-multilingual-mpnet-base-v2 which is a multilingual model  and should
+  work better for russian-enlgish cross lingual embedding
+
 - **LLM output is TP by default**: the pipeline parses the
   model's JSON and falls back to safe defaults (`TP` /
   `Low` confidence) if the model returns an unexpected classification or
   confidence value, so it would have to be checked in any case.
 
-## Test that retrieval works with
+## Test LLM output
+
+The output of the LLM and retrieved relevant chunks can be tested using `test_script.py`. There are two examples in the /examples folder one for tp and one for fp offense. Change the name of the json file used in `test_script.py` to see the change in the response.
+
 
 ```bash
 python test_script.py
 ```
+
+## Possible improvements 
+
+- Some domain knowledge would be best to restructure the json of the offense accepted by the service into natural language. As an example, the ip could have a tag indicating if its internal, so that some patterns can be mathced better (Source будет `внутренним` IP из инфраструктурного диапазона.)
+
+- If the documents in the knowledge base can be translated to english it would possibly boost the quality of similarity search (since json body has english words)

@@ -20,11 +20,13 @@ CRITICAL INSTRUCTIONS:
 1. Base your classification and recommended actions primarily on the provided knowledge-base context and the global infrastructure boundaries provided below. If no relevant context is found, rely on industry standard best practices for the given attack vector.
 2. Ensure the output strictly conforms to the JSON schema requested. Do not include markdown formatting or wrapper blocks (e.g., do not wrap in ```json ... 
 ```) because the application expects a clean JSON string directly.
+3. Knowledge base documents whose filename, title, source, or playbook name contains
+  'FP', 'FALSE_POSITIVE', or similar terminology represent documented false-positive scenarios. If these files are referenced for a decision, it should be a FP.
 
 You must return a valid JSON object matching the following structure:
 {
   "summary": "A concise, 2-3 sentence technical overview explaining what happened, the source/destination entities, and the immediate impact.",
-  "classification": "Must match one of the following values exactly:'TRUE_POSITIVE' or 'FALSE_POSITIVE'.",
+  "classification": "Must be exactly 'TP' for true positive or 'FP' for false positive.",
   "classification_reason": "A highly detailed breakdown explaining WHY this classification was chosen, citing specific indicators or lack of evidence.",
   "recommended_action": "Clear, actionable step-by-step mitigation instructions for a junior analyst to follow.",
   "playbook_reference": "The name or ID of the playbook used from the knowledge base, or null if no matching playbook was found.",

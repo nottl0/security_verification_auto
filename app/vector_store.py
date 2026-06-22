@@ -24,7 +24,7 @@ class _Settings:
         default_factory=lambda: os.getenv("COLLECTION_NAME", "soc_knowledge_base")
     )
     embedding_model: str = field(
-        default_factory=lambda: os.getenv("EMBEDDING_MODEL", "all-MiniLM-L6-v2")
+        default_factory=lambda: os.getenv("EMBEDDING_MODEL", "paraphrase-multilingual-mpnet-base-v2")
     )
     chunk_size_chars: int = field(
         default_factory=lambda: int(os.getenv("CHUNK_SIZE_CHARS", "1000"))
